@@ -1,7 +1,5 @@
 
 
-
-
 import conf from "../conf/conf.js";
 import { Client, ID, Databases, Storage, Query } from "appwrite";
 
@@ -16,7 +14,7 @@ export class Service {
         this.bucket = new Storage(this.client);
     }
 
-    // Create a new post
+
     async createPost({ title, content, featuredImage, status, userId }) {
         try {
             const slug = title.toLowerCase().replace(/\s+/g, "-");
@@ -34,18 +32,18 @@ export class Service {
     }
 
 
-    // Update an existing post
+
     async updatePost(postId, { title, content, featuredImage, status, userId }) {
         try {
             const slug = title.toLowerCase().replace(/\s+/g, "-");
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                postId, // Use unique ID, not slug
+                postId,
                 {
                     title,
                     content,
-                    featuredimage: featuredImage, // Ensure field name consistency
+                    featuredimage: featuredImage,
                     status,
                     slug,
                     userId
@@ -56,7 +54,7 @@ export class Service {
         }
     }
 
-    // Delete a post (Only creator can delete)
+
     async deletePost(postId) {
         console.log(postId)
         try {
@@ -72,7 +70,7 @@ export class Service {
         }
     }
 
-    // Fetch a post by document ID
+
     async getPostById(postId) {
         try {
             return await this.databases.getDocument(
@@ -86,17 +84,17 @@ export class Service {
         }
     }
 
-    // Fetch a post by slug
+
     async getPost(slug) {
         try {
             const response = await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                [Query.equal("slug", slug)] // Query using slug
+                [Query.equal("slug", slug)]
             );
 
             if (response.documents.length > 0) {
-                return response.documents[0]; // Return first matching post
+                return response.documents[0];
             }
 
             return null;
@@ -106,7 +104,7 @@ export class Service {
         }
     }
 
-    // Fetch all active posts
+
     async getPosts(queries = [Query.equal("status", "active")]) {
         try {
             return await this.databases.listDocuments(
@@ -120,7 +118,7 @@ export class Service {
         }
     }
 
-    // Upload a file to storage
+
     async uploadFile(file) {
         try {
             return await this.bucket.createFile(
@@ -134,7 +132,7 @@ export class Service {
         }
     }
 
-    // Delete a file from storage
+
     async deleteFile(fileId) {
         try {
             await this.bucket.deleteFile(conf.appwriteBucketId, fileId);
@@ -145,7 +143,7 @@ export class Service {
         }
     }
 
-    // Get file preview URL
+
     getFilePreview(fileId) {
         return this.bucket.getFilePreview(conf.appwriteBucketId, fileId);
     }
@@ -155,11 +153,11 @@ export class Service {
             const response = await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                [Query.equal("slug", slug)] // Search by slug
+                [Query.equal("slug", slug)]
             );
 
             if (response.documents.length > 0) {
-                return response.documents[0]; // Return first matching post
+                return response.documents[0];
             }
 
             return null;

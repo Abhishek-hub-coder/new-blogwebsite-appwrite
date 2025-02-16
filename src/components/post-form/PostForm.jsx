@@ -4,7 +4,7 @@ import { Button, Input, RTE, Select } from "..";
 import appwriteService from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { UploadCloud } from "lucide-react"; // Importing icon for file upload
+import { UploadCloud } from "lucide-react";
 
 export default function PostForm({ post }) {
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
