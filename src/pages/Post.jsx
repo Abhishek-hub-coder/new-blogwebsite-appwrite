@@ -12,7 +12,6 @@ export default function Post() {
     const userData = useSelector((state) => state.auth.userData);
     const isAuthor = post && userData ? post.userId === userData.$id : false;
 
-
     useEffect(() => {
         if (slug) {
             appwriteService.getPost(slug).then((post) => {
@@ -34,6 +33,13 @@ export default function Post() {
     return post ? (
         <div className="py-8">
             <Container>
+                {/* Upload Button */}
+                <div className="flex justify-end mb-4">
+                    <Button bgColor="bg-blue-500" onClick={() => navigate("/")}>
+                        Go to home Page
+                    </Button>
+                </div>
+
                 <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
                     <img
                         src={appwriteService.getFilePreview(post.featuredimage)}
