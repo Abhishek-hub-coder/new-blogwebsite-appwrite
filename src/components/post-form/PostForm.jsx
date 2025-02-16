@@ -72,65 +72,52 @@ export default function PostForm({ post }) {
     }, [watch, slugTransform, setValue]);
 
     return (
-        <form onSubmit={handleSubmit(submit)} className="flex flex-col md:flex-row gap-6 p-6 bg-white shadow-lg rounded-lg">
-
-            <div className="w-full md:w-2/3 space-y-4">
+        <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
+            <div className="w-2/3 px-2">
                 <Input
-                    label="Title"
-                    placeholder="Enter blog title..."
-                    className="w-full"
+                    label="Title :"
+                    placeholder="Title"
+                    className="mb-4"
                     {...register("title", { required: true })}
                 />
                 <Input
-                    label="Slug"
-                    placeholder="Generated slug..."
-                    className="w-full"
+                    label="Slug :"
+                    placeholder="Slug"
+                    className="mb-4"
                     {...register("slug", { required: true })}
                     onInput={(e) => {
                         setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
                     }}
                 />
-                <RTE label="Content" name="content" control={control} defaultValue={getValues("content")} />
+                <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
             </div>
-
-
-            <div className="w-full md:w-1/3 space-y-4">
-
-                <div className="relative border-2 border-dashed border-gray-300 rounded-lg p-4 flex flex-col items-center justify-center hover:border-blue-400 transition">
-                    <UploadCloud className="text-gray-400 w-12 h-12 mb-2" />
-                    <label className="text-sm text-gray-600">Upload Featured Image</label>
-                    <input
-                        type="file"
-                        accept="image/png, image/jpg, image/jpeg, image/gif"
-                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                        {...register("image", { required: !post })}
-                    />
-                </div>
-
-
-                {post && post.featuredImage && (
-                    <div className="w-full rounded-lg overflow-hidden shadow-md">
+            <div className="w-1/3 px-2">
+                <Input
+                    label="Featured Image :"
+                    type="file"
+                    className="mb-4"
+                    accept="image/png, image/jpg, image/jpeg, image/gif"
+                    {...register("image", { required: !post })}
+                />
+                {post && (
+                    <div className="w-full mb-4">
                         <img
-                            src={appwriteService.getFilePreview(post.featuredImage)}
+                            src={appwriteService.getFilePreview(post.featuredimage)}
                             alt={post.title}
-                            className="object-cover w-full h-48 rounded-lg"
+                            className="rounded-lg"
                         />
                     </div>
                 )}
-
-
                 <Select
                     options={["active", "inactive"]}
                     label="Status"
-                    className="w-full"
+                    className="mb-4"
                     {...register("status", { required: true })}
                 />
-
-
-                <Button type="submit" bgColor={post ? "bg-green-500" : "bg-blue-500"} className="w-full py-3 rounded-lg text-lg">
-                    {post ? "Update Blog" : "Publish Blog"}
+                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
+                    {post ? "Update" : "Submit"}
                 </Button>
             </div>
         </form>
     );
-}
+} 
