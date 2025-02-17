@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 function AllPosts() {
     const [posts, setPosts] = useState([]);
-    const [searchQuery, setSearchQuery] = useState(""); // State for search query
+    const [searchQuery, setSearchQuery] = useState(""); 
     const userData = useSelector((state) => state.auth.userData);
 
     useEffect(() => {
@@ -20,7 +20,7 @@ function AllPosts() {
         });
     }, [userData]);
 
-    // Filter posts based on title
+   
     const filteredPosts = posts.filter((post) =>
         post.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -28,7 +28,7 @@ function AllPosts() {
     return (
         <div className='w-full py-8'>
             <Container>
-                {/* Search Bar with Icon */}
+               
                 <div className="relative w-full max-w-md mx-auto mb-6">
                     <span className="absolute left-4 top-3 text-gray-400">🔍</span>
                     <input

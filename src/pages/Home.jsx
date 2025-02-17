@@ -20,7 +20,7 @@ function Home() {
         });
     }, [userData]);
 
-    // Filter posts based on the search term
+   
     const filteredPosts = posts.filter(post =>
         post.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -44,12 +44,12 @@ function Home() {
     return (
         <div className='w-full py-8'>
             <Container>
-                {/* Information line for users */}
+               
                 <h2 className="text-xl font-semibold text-gray-700 mb-4 text-center">
                     You can read specific posts from all available posts using the search filter below.
                 </h2>
 
-                {/* Search Bar with Enhanced Styling */}
+             
                 <div className="mb-6 flex justify-center">
                     <input
                         type="text"
