@@ -7,7 +7,7 @@ function Footer() {
         <section className="relative overflow-hidden py-10 bg-gray-900 text-white">
             <div className="relative z-10 mx-auto max-w-7xl px-4">
                 <div className="flex flex-wrap justify-between">
-                    {/* Left Section - Logo & Copyright */}
+                   
                     <div className="w-full p-6 md:w-1/3">
                         <div className="flex flex-col">
                             <div className="mb-4 inline-flex items-center">
@@ -19,7 +19,7 @@ function Footer() {
                         </div>
                     </div>
 
-                    {/* Center Section - Links */}
+                  
                     <div className="w-full p-6 md:w-1/3 grid grid-cols-2 gap-6">
                         <div>
                             <h3 className="text-xs font-semibold uppercase text-gray-400 mb-4">Company</h3>
@@ -41,7 +41,7 @@ function Footer() {
                         </div>
                     </div>
 
-                    {/* Right Section - Newsletter */}
+                   
                     <div className="w-full p-6 md:w-1/3">
                         <h3 className="text-xs font-semibold uppercase text-gray-400 mb-4">Stay Updated</h3>
                         <form className="flex">

@@ -1,5 +1,6 @@
 
 
+
 import conf from "../conf/conf.js";
 import { Client, ID, Databases, Storage, Query } from "appwrite";
 
@@ -145,7 +146,8 @@ export class Service {
 
 
     getFilePreview(fileId) {
-        return this.bucket.getFilePreview(conf.appwriteBucketId, fileId);
+        console.log(fileId);
+        return this.bucket.getFileView(conf.appwriteBucketId, fileId);
     }
 
     async getPostBySlug(slug) {
